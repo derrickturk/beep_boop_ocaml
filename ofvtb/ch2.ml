@@ -35,7 +35,11 @@ let times_ten_also: int -> int = fun x -> x * 10
  *   application for operators):
  *   times_ten :: Int -> Int
  *   times_ten = ( * 10) -- space so OCaml doesn't see a nested comment!
+ * oh cool, we can come close in OCaml - you can refer to an operator as
+ *   a function by e.g. ( + ) (spaces are there per style guide and to avoid
+ *   the nested-comment problem with ( * ).
  *)
+let times_ten_too: int -> int = ( * ) 10
 
 let both_nz (x: int) (y: int): bool = x <> 0 && y <> 0
 
@@ -66,9 +70,11 @@ let rec power (x: int) (n: int): int =
 
 (* this is a really, really dumb joke, don't write code like this *)
 let is_consonant c =
-  let _ = Random.self_init ()
-  and sometimes = Random.full_int 10 = 0
-   in not (
+  let sometimes = begin
+    Random.self_init ();
+    Random.full_int 10 = 0
+  end in
+   not (
      c = 'a' || c = 'e' || c = 'i' || c = 'o' || c = 'u' || sometimes && c = 'y'
    )
 
