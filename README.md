@@ -1,5 +1,8 @@
 # Beep Boop Slack Learns OCaml
 
+## Github doesn't make it easy to grant read-only access to an entire repo
+And I'm very lazy. Once I was at a beach bonfire and some very drunk and/or high individuals in a rusted-out Mazda rolled up and asked "is this a chill party or a private party?". This is a private party - it won't make sense unless you're in the Slack channel.
+
 ## Copying braindumps here from Slack
 These need reformatting from Slack's braindead copy+paste!
 
