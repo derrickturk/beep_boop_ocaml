@@ -2,6 +2,8 @@
  *   "OCaml from the Very Beginning".
  *)
 
+(* Notes for Slack - let's talk about folds here! *)
+
 let rec calm: char list -> char list = function
   | [] -> []
   | '!'::rest -> '.'::calm rest
