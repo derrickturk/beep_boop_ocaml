@@ -32,7 +32,8 @@ let checked_int_sqrt x = if x < 0
 (* so, #5, open-ended. exceptions suck because they're non-local control flow
  *   (like GOTO - or really more like "COME FROM"!) and because they generally
  *   exist outside the type system, or at least in some parallel "shadow" type
- *   system.
+ *   system. (this last point means that the user isn't generally forced to
+ *   handle the error case, which means they won't, because lazy).
  * old-school sentinel values suck because they steal an element of the range
  *   to signal error, but sometimes you need the whole range! arbitrary
  *   sentinels are ugly and easy to mis-check - does -1 mean an error, or any
