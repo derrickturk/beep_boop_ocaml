@@ -80,6 +80,11 @@ let rec same_shape' t1 t2 = match t1, t2 with
 (* have I mentioned I love folds *)
 let rec tree_of_dict d = List.fold_left (fun t (k, v) -> bst_insert k v t) Lf d
 
+(* to get left-preference, fold starting with the right tree *)
+let bst_merge t1 t2 =
+  let t1' = list_of_tree t1
+   in List.fold_left (fun t (k, v) -> bst_insert k v t) t2 t1'
+
 (* this is called a "rose tree", because have you ever seen a rosebush? one ate
  *   my in-laws backyard and I can vouch that this is its type.
  * there are a few variations on this type, but I like this one.
