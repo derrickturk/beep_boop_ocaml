@@ -70,6 +70,18 @@ let rec read_dict () =
   with
     End_of_file -> []
 
+(* UPDATE: this is nicer - using an "exception pattern" to avoid a try-with *)
+let rec read_dict' () = match read_line () with
+  | "done" -> []
+  | k' -> match int_of_string_opt k' with
+     | None -> print_string "that's not a number!\n"; read_dict ()
+     | Some k -> begin
+         match read_line () with
+           | v -> (k, v)::read_dict ()
+           | exception End_of_file -> raise (Failure "no value for key")
+         end
+  | exception End_of_file -> []
+
 (* FUCK I miss the Haskell prelude [and range syntax] here
  * so fucking tedious
  *)
@@ -97,12 +109,8 @@ let times_table_to_file path n =
 let lines_in_file chan =
   let rec go n =
     try
-      (* don't know how to explicitly "throw away" the result to silence
-       *   the warning here; can probably do it with Yet Another Nested Let
-       *   binding to _ but UGGGGGGGH
-       *)
-      input_line chan;
-      go (n + 1)
+      (* explicitly "throw away" the result to silence the warning here *)
+      let _ = input_line chan in go (n + 1)
     with
       _ -> n
    in go 0
