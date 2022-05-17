@@ -123,6 +123,10 @@ let lines_in_file chan =
  *   etc.
  * I could roll that by hand, it'd suck, or I could use OCaml's equivalent to
  *   Haskell's `bracket` - kind of like a functional try-finally
+ * This will get easier with some new standard library modules e.g. In_channel
+ *   when OCaml 4.14 hits
+ * we have to use close_*_noerr as the ~finally function because it's required
+ *   for these not to raise exceptions under any circumstances.
  *)
 let copy_file path1 path2 =
   let rec do_copy in_chan out_chan =
@@ -138,5 +142,5 @@ let copy_file path1 path2 =
        in let do_action () =
             let dst = open_out path2
              in Fun.protect (fun () -> do_copy src dst)
-                  ~finally:(fun () -> close_out dst)
-           in Fun.protect do_action ~finally:(fun () -> close_in src)
+                  ~finally:(fun () -> close_out_noerr dst)
+           in Fun.protect do_action ~finally:(fun () -> close_in_noerr src)
