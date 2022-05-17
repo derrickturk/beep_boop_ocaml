@@ -114,7 +114,8 @@ let print_file_stats path =
       dump_histogram stats.histogram
   in
   let chan = open_in path in
-    Fun.protect (fun () -> dump_stats chan) ~finally:(fun () -> close_in chan)
+    Fun.protect (fun () -> dump_stats chan)
+      ~finally:(fun () -> close_in_noerr chan)
 
 (* I'm basically giving myself "credit for time served" for some of these
  *   exercises. after rewriting that shitty program I really don't feel like
