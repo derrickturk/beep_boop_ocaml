@@ -1,0 +1,10 @@
+oftvb/ch16/stats
+oftvb/ch16/stats.opt
+oftvb/ch16/reverse
+oftvb/ch16/reverse.opt
+oftvb/ch16/ogrep
+oftvb/ch16/ogrep.opt
+*.cmi
+*.cmo
+*.cmx
+*.o

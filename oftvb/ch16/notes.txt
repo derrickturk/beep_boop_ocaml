@@ -1,0 +1,2 @@
+- I got "inconsistent assumptions over interface" at load time in my first crack at textstat.{ml, mli}. not a good look!
+- ohhhhh order matters to the compiler: have to list the .mli before the .ml
