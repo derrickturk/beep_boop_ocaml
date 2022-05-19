@@ -1,0 +1,9 @@
+- I tried real hard to build a standalone executable out of that benchmark without dune
+- I had to torture `ocamlbuild` until it confessed the command line it was using, but that was way too much magic (inferring what to build from the file extension of the [not-yet-existent] target?)
+- ayyyyo core_bench has six billion dependencies
+- yeah it shits when I try to build an actual executable but is fine in utop
+- we'll never know!
+- nope, got it with `ocamlfind ocamlopt -o bench -linkpkg -package core_bench -thread match_vs_if_bench.ml`
+- the Base people say fold = fold_left for lists, but it's Naughty to use the second name
+- the reduce example is a little silly, because summing is monoidal and the sum of an empty list is 0 - compare Haskell `getSum $ mconcat $ Sum <$> [1..100]`
+- By Allah, OCaml DOES have pattern guards! with `when`. this changes so many of my solutions for OftVB.

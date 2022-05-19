@@ -1,0 +1,38 @@
+# pre-RWO notes
+- I'm installing 4.14.0 with `opam switch rwo 4.14.0`
+- I could tell 4.14.0 was available by running `opam switch list-available`
+- I'm installing base but not yet core and I'm certainly not having the REPL auto-load Core yet.
+- why don't I have Base in utop?
+- because of the not having the REPL auto-load ("topload"?) Base and/or Core?
+- ok they lied about there being a default .ocamlinit as well as about it having to be in ~
+- now I'm getting truckoads of garbage when I quit `utop`
+- yeah loading core.top causes exception handling in utop to be Very Noisy, including exit
+- are the Jane Street libs ngmi? 
+- you can't map a fucking list without using an explicit ~f: label in Base?
+- who the ~f cares what the name of the ~f is
+- it's arbitrary
+- what the hell is wrong with these people
+- wait labeled args come after non-labeled in the call even if they come before in the type?
+- did I forget to take off the nightmare vision goggles
+- "Formal parameters and arguments are matched according to their respective labels, the absence of label being interpreted as the empty label"
+- wait, I DID forget to take off the nightmare vision goggles!
+- not only did Base ~f my map, they REORDERED THE FUCKING ARGUMENTS so the list comes before the function!
+- omg Base consistently chose the least partial-application friendly order for every fucking function
+- I have discovered raw anti-taste in its natural state
+- oh I see that their excuse is it's "consistent"
+- yes it's consistently idiotic
+- "muh style guide" - idiots, every fucking time
+- a foolish hobgoblin is consistent or some shit, IDK - Ralph Waldo Emerson, maybe
+- how the fuck does Base inject deprecation warnings onto every function in the stdlib when you load it?
+- is it possible to learn this power?
+- and use it for good instead of for dick?
+- oh OK they just brute-force shadow everything in the stdlib
+- that's not interesting, but it does betray an impressive dedication to dickishness
+- ok, `let open ... in` is nice, and I kind-of get the appeal of local operator bindings like `Float.O`
+- `Module.(whatever the hell here)` on the other hand is real odd
+- oh weird, there's also `module.[|...|]` and a bunch of other brackets
+- wait, no, Base.String.concat makes me think that there IS some re-ordering fuckery with ~labels
+- no, it's an optional argument, which is subtly different
+- ok, hd and tl instead of x and xs. that's fine. is this an OCaml thing or more Jane Street cultural imperialism?
+- style notes: they don't indent after `match` or `let ... in`
+- In_channel is great AND it's part of the stdlib in 4.14+, so that's a win

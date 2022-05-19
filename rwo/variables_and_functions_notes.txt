@@ -1,0 +1,25 @@
+- I learned that let-binding-and-functions-equivalence-thing from the "lambda the ultimate" papers. it's a great trick, especially when writing toy interpreters! or when trying to sneak features into "weird machines" found in the wild.
+- "In OCaml, there is no penalty for calling a curried function with all of its arguments. (Partial application, unsurprisingly, does have a small extra cost.)" - nice! I wrote a thing once, for a toy functional-lang-to-Javascript compiler, that checked for "saturated" applications and generated direct calls, vs. partial applications which became closures. I suspect, not without reason, that industrial-strength compilers do something similar but much fancier.
+- "OCaml handles this calling convention efficiently as well. In particular it does not generally have to allocate a tuple just for the purpose of sending arguments to a tuple-style function." - more suprising than the previous, and also good news
+- these guys explain the precedence rules of unary vs. binary `-`, which is nice
+- fun with pipe: `List.map ~f:((|>) "Hello world") transforms`
+- no control over operator precedence and associativity. on the one hand, that's limiting. on the other hand, having seen the operator zoo fo things like Haskell's lens, maybe some limits are OK.
+- I don't buy their argument AT ALL about labels adding information to "uninformative argument types". you have a great type system bro, make the types informative!
+  Consider their example:
+  ```
+  val create_hashtable :
+    init_size:int -> allow_shrinking:bool -> ('a,'b) Hashtable.t
+  ```
+  vs.
+  ```
+  type shrinkage =
+    | No_shrinking_allowed
+    | It_was_cold
+
+  val create_hashtable: int -> shrinkage -> ('a, 'b') Hashtable.t
+  ```
+  Bob Harper calls this "boolean blindness", and the cure is not to label your meaningless bools but rather to replace the bool with a meaningful and distinct type!
+- the same is true to a lesser extent for multiple arguments of the same type with different meanings. in general these are opportunities to introduce "strong typedefs" e.g. Haskell `newtype Pos = Pos Int`. this seems harder in OCaml: it's easy to create an alias, but I think to create an abstract/strong type wrapper you need a module.
+- that wrap-or-don't complexity of calling with ? vs ~ for optional arguments is a lot
+- the parens go in an odd place when annotating labeled arguments
+- this feels like an awkward spot between the simplicity of "no labels or optionals" and the balls-out hypercomplex flexibility of Common Lisp. pick a lane!
