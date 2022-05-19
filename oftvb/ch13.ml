@@ -150,12 +150,10 @@ let mult_table n =
 
 (* these are kind of dumb *)
 
-let to_lower c =
-  if c >= 'A' && c <= 'Z'
-    then char_of_int (int_of_char c lor 32)
-    else c
+let to_lower = function
+  | 'A'..'Z' as c -> char_of_int (int_of_char c lor 32)
+  | c -> c
 
-let to_upper c =
-  if c >= 'a' && c <= 'z'
-    then char_of_int (int_of_char c lxor 32)
-    else c
+let to_upper = function
+  | 'a'..'z' as c -> char_of_int (int_of_char c lxor 32)
+  | c -> c

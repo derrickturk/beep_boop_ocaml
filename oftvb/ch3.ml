@@ -17,7 +17,12 @@ let not = function
  *   for philosophical reasons: I can't write a pattern for "positive integers",
  *   only for specific values
  *)
-let sum_up_to n = if n <= 0 then 0 else n + sum_up_to (n - 1)
+let rec sum_up_to n = if n <= 0 then 0 else n + sum_up_to (n - 1)
+
+(* oh-ho but there ARE pattern guards! *)
+let rec sum_up_to' = function
+  | n when n <= 0 -> 0
+  | n -> n + sum_up_to' (n - 1)
 
 exception Negative_power_of_int
 

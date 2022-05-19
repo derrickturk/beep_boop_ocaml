@@ -7,7 +7,7 @@ let smallest xs =
     | None, [] -> raise Not_found
     | Some n, [] -> n
     | None, x::xs -> if x > 0 then go (Some x) xs else go None xs
-    | Some n, x::xs -> if x >0 && x < n then go (Some x) xs else go (Some n) xs
+    | Some n, x::xs -> if x > 0 && x < n then go (Some x) xs else go (Some n) xs
    in go None xs
 
 let smallest_or_zero xs = try smallest xs with Not_found -> 0

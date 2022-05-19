@@ -1,2 +1,3 @@
 - I got "inconsistent assumptions over interface" at load time in my first crack at textstat.{ml, mli}. not a good look!
 - ohhhhh order matters to the compiler: have to list the .mli before the .ml
+- I hope RWO covers linking in compiled "standard" modules like Str, but I have a bad feeling
