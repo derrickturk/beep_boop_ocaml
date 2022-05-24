@@ -1,0 +1,6 @@
+- my instinct would be to plug the "base" stuff into expr, but I like this design of parameterizing an expression language by its primitives
+- they're really not selling polymorphic variants very hard
+- I guess people use them for ad-hoc little things e.g. to avoid Boolean blindness in function arguments without explicitly introducing new variant types?
+- I went down this rabbit hole a while back and don't remember why
+- now polymorphic product/record types, those are badass
+- I didn't know about #poly_variant_type as a pattern

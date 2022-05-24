@@ -1,0 +1,1 @@
+- Fieldslib is kind of cool; it's like a combination of (Haskell-style) generic programming with shitty lenses.
