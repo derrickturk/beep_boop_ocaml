@@ -1,0 +1,9 @@
+- I still don't know the best order to write ~funny:arguments vs. ordinary ones
+- OCamlfind seems nice but magical (I am sure it's just finding the right -I, -L, -l style arguments and passing them to ocamlopt)
+- dune's "pick the artifact by the extension" pisses me off. who names Linux executables with .exe? (apparently bytecode executables are .bc)
+- dune exec's desire to see program names like ./freq.exe is weird to me (the dune file says "(name freq)")
+- optional arguments break my reasoning in some places e.g. in freq1/counter.ml: `let to_list = Map.to_alist` vs `let to_list cs = Map.to_alist cs` (because `Map.to_alist` has an optional argument, the types don't match until it's applied to a first non-optional argument!) 
+- neat that you can expose both abstract and concrete types in an interface
+- dumb that you have to copy-paste concrete type definitions though
+- I like that modules are nominally-typed, but also first class: you can re-use the same implementation behind as many "strong typedefs" as needed (see session_info.ml)
+- module and signature includes are cool but I am starting to get feature fatigue: I have a feeling that module-level hackery is to OCaml as type-level programming is to Haskell as [everything] is to C#
