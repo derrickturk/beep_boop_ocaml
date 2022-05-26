@@ -110,4 +110,4 @@ let forall_fold p = List.fold_left (fun b x -> b && p x) true
  *   map over arbitrary levels of functorial structure - this guy would
  *   be fmap . fmap
  *)
-let mapl f = List.map (List.map f);;
+let mapl f = List.map (List.map f)

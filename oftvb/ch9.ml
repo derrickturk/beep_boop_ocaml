@@ -26,6 +26,8 @@ let member: 'a -> 'a list -> bool =
 
 let member_3: int list -> bool = member 3
 
+let member_all x = List.for_all (member x)
+
 (* no interesting reason, just argument order - (/) x y = x / y
  * in Haskell I'd spell this `flip div`
  * where flip : ('a -> 'b -> 'c) -> 'b -> 'a -> 'c
@@ -34,11 +36,12 @@ let divided_by denom num = num / denom
 
 let half_em = List.map (divided_by 2)
 
-(* #4: I wrote the function yesterday and I don't understand what the hell the
- *   second part means. my interpretation: no because types. (you either take a
+(* #4: I don't understand what the hell the second part means.
+ *   my interpretation: no because types. (you either take a
  *   'a list, an 'a list list, etc etc - if you want me to write a rose tree
  *   type and a map over it, I can do that...?)
  *)
+let mapll f = List.map (List.map (List.map f))
 
 (* frankly I'd call the per-list one truncate and wouldn't name the mapped
  *   one at all...
