@@ -28,7 +28,7 @@ let area = function
   | Rect (h, w) -> h * w
 
 let orient = function
-  | (Square _) as s -> s
+  | Square _ as s -> s
   | Rect (h, w) as r -> if h < w then Rect (w, h) else r
 
 let height = function
