@@ -21,8 +21,7 @@
 
 (* #1: g: 'a -> 'b -> 'c -> 'd = 'a -> ('b -> ('c -> 'd)) - need I go on? *)
 
-let member: 'a -> 'a list -> bool =
-  fun x -> List.fold_left (fun b y -> b || x = y) false
+let member (x: 'a) (xs: 'a list): bool = List.exists ((=) x) xs
 
 let member_3: int list -> bool = member 3
 
