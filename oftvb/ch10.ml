@@ -85,7 +85,7 @@ let liftO2 f o1 o2 = match o1, o2 with
 let rec power x n =
   if n < 0
     then raise (Invalid_argument "negative power")
-    else if n == 0
+    else if n = 0
       then 1
       else x * power x (n - 1)
 

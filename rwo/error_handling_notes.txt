@@ -1,0 +1,6 @@
+- finally, some good fucking ~food~ monads
+- I need to read more about custom let "operators"; Base provides it via a ppx extension but these are now built-in
+- deriving macros/syntax-extensions(?) seem useful
+- not sold on this sexp fetish
+- backtraces should be on by default, good job Base
+- raise_notrace, an odd built-in
