@@ -1,0 +1,11 @@
+- you can overload wacky indexing syntax (like Bigarray)
+- oooh downto, alarming
+- but no step?
+- incr and decr
+- that mutable "y combinator" is a doozy
+- deriving hash, compare seem handy
+- TODO: how special of a case are printf formats?
+- In_channel.{fold,iter}_lines are great ideas; should be in the stdlib
+- Ok, I think I get weakly polymorphic types now; the value restriction is an over-conservative heuristic but unlike Java OCaml is smart enough to insist that covariant type parameters can never include internal mutability. (In Java T <: U -> T[] <: U[], which is a GATEWAY TO SOUNDNESS HELL.)
+- Is there a way to "mask" the mutability of a type via module abstraction, e.g. giving me a covariant, "immutable" array?
+- I don't think there is - I think if I thought harder it'd be something to do with ensuring the soundness of the implementation of the interface, not just the soundness of client code
