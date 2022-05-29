@@ -1,0 +1,20 @@
+- I sense that covariance/contravariance inference/annotations don't play nice with GADTs
+- locally abstract type: may be instantiated different ways in same function
+- explicit polymorphic type: allows polymorphic recursion
+- but needs locally abstract type too!
+- type a. a expr -> a syntax combines both
+- there are too many syntaxes for eval-over-gadt-like type signatures, and each breaks in subtly different ways
+- the pipeline example is nice, kind of a "free monad" / "tagless final" / "defunctionalization" approach
+- they should have specified `complete` on the `Present` GADT constructor, because they're lying: you can have `Present 23: (int, incomplete) coption` or for that matter `Present 23: (int, bool) coption` with their definition
+- are there approaches for type level programming in OCaml (e.g. to define a `+` on type-level nats to support vector concatenation?)
+- also, define your tag types (like `complete` or `incomplete`) as empty variants / void so that they can never appear as the types of valid terms
+- the ability to define types as equal while also re-stating variants is weird, as in their:
+```
+module M : sig
+  type incomplete = Z
+  type complete = Z
+end = struct
+  type incomplete = Z
+  type complete = incomplete = Z
+end
+```
