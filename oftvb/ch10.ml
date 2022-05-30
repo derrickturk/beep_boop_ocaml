@@ -100,4 +100,7 @@ let rec eval = function
         | Some 0 -> None
         | y' -> liftO2 (/) (eval x) y'
       end
-  | Pow (x, y) -> liftO2 power (eval x) (eval y)
+  | Pow (x, y) ->
+      match eval y with
+        | Some y' when y' < 0 -> None
+        | y' -> liftO2 power (eval x) y'

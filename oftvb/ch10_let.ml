@@ -39,4 +39,7 @@ let rec eval = function
       if y' = 0
         then None
         else let* x' = eval x in Some (x' / y')
-  | Pow (x, y) -> let+ x' = eval x and+ y' = eval y in power x' y'
+  | Pow (x, y) -> let* y' = eval y in
+      if y' = 0
+        then None
+        else let+ x' = eval x in power x' y'
