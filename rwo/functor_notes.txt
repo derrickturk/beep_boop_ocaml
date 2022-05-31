@@ -1,0 +1,10 @@
+- things that functors seem to sort-of "substitute for" from other PLs:
+  - trait- or typeclass-based generics
+  - strong typedefs / newtypes, wait, or not?
+    - oh shit, buzzword, "generative" vs. "applicative" functors
+    - ordinary functor on named module will always make same/compatible type ("applicative")
+    - add an () argument, or pass an anonymous struct ... end, get new/incompatible type ("generative")
+    - FUN FACT: these are "applicative functors" and Haskell has "applicative functors", but both words mean different things in both languages!
+    - or there is some deep category-theoretic sense in which all the ten thousand things are the same, but I don't give a shit
+  - some cases of "deriving" or (GHC-style) generic programming?
+- I don't think the REPL can meaningfully load an interface from an .mli (as a module type)
