@@ -8,3 +8,5 @@
     - or there is some deep category-theoretic sense in which all the ten thousand things are the same, but I don't give a shit
   - some cases of "deriving" or (GHC-style) generic programming?
 - I don't think the REPL can meaningfully load an interface from an .mli (as a module type)
+- ok, this chapter does a good job of explaining some idioms (e.g. destructive substitution with `include`) that seem like they'll come up often
+- you can do `blah with type x := a with type y := b` and so on
