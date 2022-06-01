@@ -10,3 +10,18 @@
 - I don't think the REPL can meaningfully load an interface from an .mli (as a module type)
 - ok, this chapter does a good job of explaining some idioms (e.g. destructive substitution with `include`) that seem like they'll come up often
 - you can do `blah with type x := a with type y := b` and so on
+- fun fact: `functor` is a keyword and `module F (X: M1) (Y: M2) = ...` is syntactic sugar for `module F = functor (X: M1) -> functor (Y: M2)  -> ...`
+- without comment:
+```
+utop # module type Operand = sig val x: int end;;
+module type Operand = sig val x : int end
+utop # module type Funky = functor (X: Operand) -> Operand;;
+module type Funky = functor (X : Operand) -> Operand
+utop # module Apply (F: Funky) (X: Operand): Operand = F (X);;
+module Apply : functor (F : Funky) (X : Operand) -> Operand
+utop # module Eh = Apply (functor (X: Operand) -> struct let x = X.x + 1 end) (struct let x = 2 end);;
+module Eh : Operand
+utop # Eh.x;;
+- : int = 3
+```
+- at the REPL, when dealing with compiled files, #load and #load_rec are your friends
