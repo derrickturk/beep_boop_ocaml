@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ocamlfind ocamlc -linkpkg -package base fqueue.mli fqueue.ml foldable.ml fqueue_foldable.mli fqueue_foldable.ml main.ml -o fqueue
