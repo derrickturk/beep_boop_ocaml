@@ -1,0 +1,5 @@
+- so this is pretty wild
+- this feels like a (better? different?) alternative to many uses of objects
+- first-class functors are totally a thing too
+- yeah, the query-dispatcher example really shows how these are existential like objects - not open-recursive though(?)
+- JS fuckiness: Base.sexp_of_string like Core.sexp_of_string thinks everything is an atom; they're totally fucked. Base.Sexp.of_string = (). Core.Sexp.of_string is correct.
