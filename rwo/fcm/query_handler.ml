@@ -1,4 +1,5 @@
 open Base
+open Core
 open Stdio
 
 module type Query_handler = sig
@@ -102,7 +103,76 @@ let rec cli table =
         printf "%s\n%!" msg;
         cli table
 
+(* original "main"
 let () = cli @@ build_dispatch_table
   [ make_some_handler (module Unique) 0
   ; make_some_handler (module List_dir) "."
   ]
+*)
+
+(* a query handler for loading other query handlers *)
+module Loader = struct
+  type config = (module Query_handler) list [@sexp.opaque] [@@deriving sexp]
+
+  type t =  { known: (module Query_handler) String.Table.t
+            ; active: (module Some_query_handler) String.Table.t
+            }
+
+  let name = "loader"
+
+  let create known_list =
+    let active = String.Table.create () in
+    let known = String.Table.create () in
+    List.iter known_list
+      ~f:(fun ((module Q: Query_handler) as q) ->
+        Hashtbl.set known ~key:Q.name ~data:q);
+    { known; active }
+
+  let load t handler_name cfg =
+    if Hashtbl.mem t.active handler_name
+      then Or_error.error "can't re-register active handler"
+        handler_name String.sexp_of_t
+      else match Hashtbl.find t.known handler_name with
+        | None -> Or_error.error "unknown handler" handler_name String.sexp_of_t
+        | Some (module Q: Query_handler) ->
+            let inst = make_some_handler (module Q) (Q.config_of_sexp cfg) in
+            Hashtbl.set t.active ~key:handler_name ~data:inst;
+            Ok Sexp.unit
+
+  let unload t handler_name =
+    if not (Hashtbl.mem t.active handler_name)
+      then Or_error.error "handler not active" handler_name String.sexp_of_t
+      else if String.(=) handler_name name
+        then Or_error.error_string "of course I know him, he's me"
+        else begin
+          Hashtbl.remove t.active handler_name;
+          Ok Sexp.unit
+        end
+
+  type request =
+    | Load of string * Sexp.t
+    | Unload of string
+    | Known_services
+    | Active_services
+  [@@deriving sexp]
+
+  let eval t sexp =
+    match Or_error.try_with (fun () -> request_of_sexp sexp) with
+      | Error _ as e -> e
+      | Ok resp -> match resp with
+          | Load (name, cfg) -> load t name cfg
+          | Unload name -> unload t name
+          | Known_services -> Ok ([%sexp_of: string list] (Hashtbl.keys t.known))
+          | Active_services -> Ok ([%sexp_of: string list] (Hashtbl.keys t.active))
+end
+
+let () =
+  let loader = Loader.create [(module Unique); (module List_dir)] in
+  let some_loader =
+    (module struct
+      module Q = Loader
+      let this = loader
+    end: Some_query_handler)
+  in
+  Hashtbl.set loader.Loader.active ~key:Loader.name ~data:some_loader;
+  cli loader.active

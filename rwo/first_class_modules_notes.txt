@@ -3,3 +3,5 @@
 - first-class functors are totally a thing too
 - yeah, the query-dispatcher example really shows how these are existential like objects - not open-recursive though(?)
 - JS fuckiness: Base.sexp_of_string like Core.sexp_of_string thinks everything is an atom; they're totally fucked. Base.Sexp.of_string = (). Core.Sexp.of_string is correct.
+- I think this chapter had some Heavy Fucking; they use both Base.Hashtbl.create and Core.String.Table.create (without the `Core.`, and without an `open Core`)
+- more Heavy Fucking: they miss an opportunity to use their existentializing function in Loader.load
