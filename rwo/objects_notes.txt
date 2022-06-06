@@ -1,0 +1,8 @@
+- I like that object types and classes aren't conflated
+- oh weird, `{ <` is not the same as `{<`; I mis-parsed that operator
+- "depth subtyping" is not new but is an interesting way to put it
+- (it's just co- and contra-variance)
+- nice that you can infer parameters in :> subtype coercion
+- +/- for co/contravariance make sense when you remember positive position ("makes one"), negative position ("takes one")
+- the add-a-variant-repr-tag idea is kind of goofy but it does sometimes come up, or feels like things that come up
+- "row polymorphism cannot be used to place different types of objects in the same container... we must use subtyping": this feels like a runtime vs static thing; I bet the downcast has a runtime effect (boxing behind a different "vtable"?)
