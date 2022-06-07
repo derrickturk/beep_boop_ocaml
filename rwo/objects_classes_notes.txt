@@ -6,3 +6,9 @@
 - +/- for co/contravariance make sense when you remember positive position ("makes one"), negative position ("takes one")
 - the add-a-variant-repr-tag idea is kind of goofy but it does sometimes come up, or feels like things that come up
 - "row polymorphism cannot be used to place different types of objects in the same container... we must use subtyping": this feels like a runtime vs static thing; I bet the downcast has a runtime effect (boxing behind a different "vtable"?)
+- important to remember that class definitions also create an object type definition with the same name
+- class definitions seem to require a surprising number of type annotations when they are polymorphic
+- their iterator is fucking gross, we have algebraic types, come on
+- the explicit forall is good to know
+- digging deeper into "why can't I write a #map method on `stack`", I realize that OCaml class types and polymorphism have some very very very rough interactions
+- see https://alan.petitepomme.net/cwn/2015.10.27.html#5
