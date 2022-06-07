@@ -12,3 +12,7 @@
 - the explicit forall is good to know
 - digging deeper into "why can't I write a #map method on `stack`", I realize that OCaml class types and polymorphism have some very very very rough interactions
 - see https://alan.petitepomme.net/cwn/2015.10.27.html#5
+- actually module interactions with class types seem super fucky too - try hiding a "public" method with a module interface type
+- this is a huge fucking mystery given the hoopla over row polymorphism and subtyping, and I have no idea what to search for to find an explanation
+- nope, private types! (https://v2.ocaml.org/manual/privatetypes.html#ss:private-rows)
+- "Just as with module types, you don’t have to give a type for everything; anything you omit will be hidden" this is a FUCKING LIE

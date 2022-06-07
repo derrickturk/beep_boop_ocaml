@@ -38,3 +38,13 @@ class ['a] stack init = object
     fun f -> new stack (List.map xs ~f)
    *)
 end
+
+class sstack init = object
+  inherit [string] stack init
+  method print = List.iter xs ~f:Stdio.print_endline
+end
+
+class dub_stack init = object
+  inherit [int] stack init as super
+  method push hd = super#push (hd * 2)
+end
