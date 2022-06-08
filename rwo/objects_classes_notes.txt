@@ -17,3 +17,10 @@
 - nope, private types! (https://v2.ocaml.org/manual/privatetypes.html#ss:private-rows)
 - "Just as with module types, you don’t have to give a type for everything; anything you omit will be hidden" this is a FUCKING LIE
 - love the One Good Use of open recursion: the visitor pattern
+- OCaml "virtual" == C++ "pure virtual" [abstract] (?)
+- class must be virtual if any method is virtual
+- async_graphics wanted to downgrade the entire universe, and I would prefer not to
+- oh, initializer, that's cool
+- type signature like
+    method distance: 'a. (#point0 as 'a) -> int
+  can be used to quantify over the extensible (..) [i.e. row variable] part of any subtype of class point0
