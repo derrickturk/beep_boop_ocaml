@@ -39,4 +39,4 @@ class bold_counter = object
       | _ -> acc
 end
 
-let count_bold = (new bold_counter)#doc
+let count_bold = (new bold_counter)#doc 0
