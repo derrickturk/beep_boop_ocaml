@@ -30,6 +30,7 @@ module Exposed: sig
     (* "Just as with module types, you don’t have to give a type for
      *   everything; anything you omit will be hidden" this is a FUCKING LIE
      * try omitting iter here
+     * (you have to make it private in the definition)
      *)
     method iter: ('a -> unit) -> unit
   end
