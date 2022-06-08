@@ -8,4 +8,6 @@ oftvb/ch16/ogrep.opt
 *.cmo
 *.cmx
 *.o
+*.byte
+*.js
 **/_build
