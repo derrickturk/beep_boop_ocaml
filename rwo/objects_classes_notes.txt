@@ -16,3 +16,4 @@
 - this is a huge fucking mystery given the hoopla over row polymorphism and subtyping, and I have no idea what to search for to find an explanation
 - nope, private types! (https://v2.ocaml.org/manual/privatetypes.html#ss:private-rows)
 - "Just as with module types, you don’t have to give a type for everything; anything you omit will be hidden" this is a FUCKING LIE
+- love the One Good Use of open recursion: the visitor pattern
