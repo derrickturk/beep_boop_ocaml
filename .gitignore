@@ -12,5 +12,6 @@ oftvb/ch16/ogrep.opt
 *.cmj
 *.o
 *.byte
+*.exe
 *.js
 **/_build

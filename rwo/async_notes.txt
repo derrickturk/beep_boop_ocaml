@@ -1,0 +1,9 @@
+- this makes me want to actually read about Haskell's async monad(s)
+- "Calling bind and return together is a fairly common pattern, and as such there is a standard shortcut for it called Deferred.map" - that's a weird way to think about it!
+- match%bind is kind of fun, like binding to \case in Haskell with -XLambdaCase
+- "refutation case":
+```
+type never = |
+let absurd (void: never): 'a = match void with _ -> .
+```
+- Async.Pipe looks worth reading about
