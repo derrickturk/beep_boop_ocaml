@@ -1,0 +1,4 @@
+- the thrice-cursed dogs of Jane Street have "wisely" left Core.Command 100% intact except for the `run` function, which is now no longer a function but a polymorphic variant / advertisement `\`Use_Command_unix`.
+- this naturally means installing core_unix of which `Command_unix` is a module, maybe
+- WRONG! only a bitch ass would think that. it's of course the "require"-able thing `core_unix.command_unix` which provides the `Command_unix` module
+- Naturally, so as not to duplicate code, all CLI parser CONSTRUCTION must still be done via `Core.Command`.

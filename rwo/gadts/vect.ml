@@ -12,3 +12,5 @@ type (_, 'a) vect =
 let rec get: type n. n fin -> (n, 'a) vect -> 'a = fun i v -> match i, v with
   | Z, VCons (x, _) -> x
   | S i, VCons (_, xs) -> get i xs
+
+let () = print_endline (string_of_int (get Z (VCons (3, Nil))))

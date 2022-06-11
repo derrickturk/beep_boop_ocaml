@@ -1,0 +1,18 @@
+- private type in module signature - use to allow pattern matching but forbid construction using variant or record construction syntax. 
+- odd that annotating with a variant type brings constructors into scope e.g. in `let x: Sexp.t = List []`
+- cool idiom:
+```
+module Thing = struct
+  module T = struct
+    (* basic stuff *)
+  end
+  include T
+  include SomeFunctor(T)
+  ...
+end
+```
+- polymorphic compare does in fact do what I thought
+- !'a is an injectivity annotation "indicating that the paramter can be deduced from the whole type", but I'm not totally sure what that means: "Injectivity annotations are only necessary for abstract types and private row types, since they can otherwise be deduced from the type declaration: all parameters are injective for record and variant type declarations (including extensible types); for type abbreviations a parameter is injective if it has an injective occurrence in its defining equation (be it private or not). For constrained type parameters in type abbreviations, they are injective if either they appear at an injective position in the body, or if all their type variables are injective; in particular, if a constrained type parameter contains a variable that doesn’t appear in the body, it cannot be injective."
+- ahhhhh it comes up with defining things like equality witness types
+- dumb example (still not totally clear on practical import): consider `type 'a t = int` vs `type !'a t = int`, and when the compiler should be allowed to reason from `'a t = 'b t` to `'a = 'b`
+- there are also constraints `constraint 'a = int`

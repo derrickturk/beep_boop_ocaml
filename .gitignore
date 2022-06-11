@@ -7,6 +7,9 @@ oftvb/ch16/ogrep.opt
 *.cmi
 *.cmo
 *.cmx
+*.cmt
+*.cmti
+*.cmj
 *.o
 *.byte
 *.js
