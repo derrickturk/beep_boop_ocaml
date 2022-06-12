@@ -1,0 +1,5 @@
+(executable
+ (public_name ddg)
+ (name main)
+ (libraries core core_unix.command_unix async uri yojson cohttp-async textwrap)
+ (preprocess (pps ppx_jane)))

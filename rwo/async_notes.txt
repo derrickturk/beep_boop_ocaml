@@ -7,3 +7,4 @@ type never = |
 let absurd (void: never): 'a = match void with _ -> .
 ```
 - Async.Pipe looks worth reading about
+- open! = open, and STFU about shadowing
