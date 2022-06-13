@@ -4,6 +4,10 @@ type error = { expected: string; found: string }
 
 val make: (string -> ('a * string, error) result) -> 'a t
 
+val fix: ('a t -> 'a t) -> 'a t
+val fix2: (('a t * 'b t) -> ('a t * 'b t)) -> ('a t * 'b t)
+val fix3: (('a t * 'b t * 'c t) -> ('a t * 'b t * 'c t)) -> ('a t * 'b t * 'c t)
+
 val parse: 'a t -> string -> ('a * string, error) result
 val parse_all: 'a t -> string -> ('a, error) result
 

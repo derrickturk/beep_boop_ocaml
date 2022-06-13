@@ -4,6 +4,29 @@ type 'a t = string -> ('a * string, error) result
 
 let make f = f
 
+let rec fix f inp = f (fix f) inp
+
+let rec fix2 f =
+  let rec pa inp =
+    let (fix_pa, _) = f (fix2 f) in
+    fix_pa inp
+  and pb inp =
+    let (_, fix_pb) = f (fix2 f) in
+    fix_pb inp
+  in (pa, pb)
+
+let rec fix3 f =
+  let rec pa inp =
+    let (fix_pa, _, _) = f (fix3 f) in
+    fix_pa inp
+  and pb inp =
+    let (_, fix_pb, _) = f (fix3 f) in
+    fix_pb inp
+  and pc inp =
+    let (_, _, fix_pc) = f (fix3 f) in
+    fix_pc inp
+  in (pa, pb, pc)
+
 let parse p inp = p inp
 
 let parse_all p inp = match p inp with
