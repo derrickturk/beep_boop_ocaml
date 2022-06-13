@@ -1,4 +1,4 @@
-type 'a t
+type +'a t (* nice, a covariance annotation in the wild *)
 
 type error = { expected: string; found: string }
 
@@ -27,6 +27,13 @@ val alt: 'a t -> 'a t -> 'a t
 val empty: 'a t
 
 val (<|>): 'a t -> 'a t -> 'a t
+
+val many: 'a t -> 'a list t
+val some: 'a t -> ('a * 'a list) t
+
+val sep_by: 'a t -> sep:'b t -> 'a list t
+
+val eof: unit t
 
 val l: string -> string t
 val ws: unit t

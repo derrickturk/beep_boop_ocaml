@@ -60,9 +60,34 @@ let alt p1 p2 inp = match p1 inp with
   | Ok _ as o -> o
   | _ -> p2 inp
 
-let empty inp = Error { expected = "<failure>"; found = inp }
+let empty inp = Error { expected = "<failure>"; found = String.escaped inp }
 
 let (<|>) p1 p2 = alt p1 p2
+
+let rec many p inp = match p inp with
+  | Ok (hd, rest) ->
+      begin match many p rest with
+        | Ok (tl, rest) -> Ok (hd::tl, rest)
+        | Error _ -> failwith "impossible: failure in many"
+      end
+  | Error _ -> Ok ([], inp)
+
+let some p =
+  let* hd = p in
+  let* tl = many p in
+  return (hd, tl)
+
+let sep_by p ~sep =
+  let* x = opt p in
+  match x with
+    | Some hd ->
+      let* tl = many (sep *> p) in
+      return (hd::tl)
+    | None -> return []
+
+let eof = function
+  | "" -> Ok ((), "")
+  | inp -> Error { expected = "<end of input>"; found = String.escaped inp }
 
 let l lit inp =
   let open String in
