@@ -2,6 +2,8 @@ type +'a t (* nice, a covariance annotation in the wild *)
 
 type error = { expected: string; found: string }
 
+val make: (string -> ('a * string, error) result) -> 'a t
+
 val parse: 'a t -> string -> ('a * string, error) result
 val parse_all: 'a t -> string -> ('a, error) result
 

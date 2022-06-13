@@ -2,6 +2,8 @@ type error = { expected: string; found: string }
 
 type 'a t = string -> ('a * string, error) result
 
+let make f = f
+
 let parse p inp = p inp
 
 let parse_all p inp = match p inp with
