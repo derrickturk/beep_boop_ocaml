@@ -31,19 +31,19 @@ let string =
 
 (* I can't get this to typecheck without an explicit `fix` - dunno why *)
 
-let list' json =
-  print_endline "list'";
+let rec json_inner inp =
+  parse (int <|> bool <|> null <|> string <|> list' () <|> assoc' ()) inp
+and json' () = make json_inner
+and list' () =
   let* _ = lexeme (l "[") in
-  let* contents = sep_by ~sep:(lexeme (l ",")) (lexeme json) in
+  let* contents = sep_by ~sep:(lexeme (l ",")) (lexeme (json' ())) in
   let* _ = l "]" in
   return (`List contents)
-
-let assoc' json =
-  print_endline "assoc'";
+and assoc' () =
   let kv =
     let+ k = lexeme string_literal
     and+ _ = lexeme (l ":")
-    and+ v = json
+    and+ v = json' ()
     in (k, v)
   in
   let* _ = lexeme (l "{") in
@@ -51,16 +51,6 @@ let assoc' json =
   let* _ = l "}" in
   return (`Assoc contents)
 
-let json' json = int <|> bool <|> null <|> string <|> list' json <|> assoc' json
-
-let json =
-  (*
-  let rec json_inner inp = parse (json' json_inner) inp in
-  make json_inner
-  *)
-  let rec fix f = f (fix f) in
-  fix json'
-
-let list = list' json
-
-let assoc = assoc' json
+let list = list' ()
+let assoc = assoc' ()
+let json = json' ()
