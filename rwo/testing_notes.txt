@@ -1,0 +1,2 @@
+- {|delimited strings|} are worth {xxx|remembering|xxx}
+- totally not sold on expect-this-string tests

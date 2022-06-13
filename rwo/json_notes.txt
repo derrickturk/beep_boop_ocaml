@@ -1,0 +1,2 @@
+- ATD looks interesting, although I'd prefer an OCaml-integrated Aeson-style `@@deriving` approach
+- ah, that's `ppx_yojson_conv`
