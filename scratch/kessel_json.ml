@@ -25,11 +25,18 @@ let string =
   let* _ = l "\"" in
   return (`String (String.concat "" contents))
 
-let rec list inp =
-  let list' =
-    let* _ = l "[" in
-    let* contents = sep_by ~sep:(lexeme (l ",")) (lexeme json) in
-    let* _ = l "]" in
-    return (`List contents)
-  in parse list' inp
-and json = int <|> bool <|> null <|> string <|> list
+(* I can't get this to typecheck without an explicit `fix` - dunno why *)
+
+let list' json =
+  let* _ = l "[" in
+  let* contents = sep_by ~sep:(lexeme (l ",")) (lexeme json) in
+  let* _ = l "]" in
+  return (`List contents)
+
+let json' json = int <|> bool <|> null <|> string <|> list' json
+
+let json =
+  let rec fix f = f (fix f) in
+  fix json'
+
+let list = list' json
