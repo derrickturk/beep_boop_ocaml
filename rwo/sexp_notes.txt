@@ -1,0 +1,4 @@
+- OK, now they tell me about `#require "core.top"` - explains a lot!
+- [%sexp_of] is useful
+- [@@deriving sexp] in a module interface just creates the signatures, not the impls
+- convention is to shadow e.g. t_of_sexp to preserve invariants etc.
