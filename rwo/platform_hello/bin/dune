@@ -1,0 +1,4 @@
+(executable
+ (public_name platform_hello)
+ (name main)
+ (libraries platform_hello))
