@@ -1,0 +1,5 @@
+- after reading https://www.cl.cam.ac.uk/~jdy22/papers/a-modular-foreign-function-interface.pdf, I understand the justification for `ctypes` and the dynamic/static distinction (thus the relevance of `ctypes-foreign` and `libffi`).
+- the raw FFI interface (https://v2.ocaml.org/manual/intfc.html) requires some intimacy with the OCaml runtime on the C side
+- `ctypes` just generates this for you...
+- "just"
+- the RWO example is (again) wrong: in `dune`, you need `(libraries ctypes.foreign)` rather than what they suggest

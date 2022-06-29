@@ -1,0 +1,4 @@
+(executable
+ (name ncurses_example)
+ (libraries ctypes.foreign)
+ (flags :standard -cclib -lncurses))
