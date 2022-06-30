@@ -3,3 +3,6 @@
 - `ctypes` just generates this for you...
 - "just"
 - the RWO example is (again) wrong: in `dune`, you need `(libraries ctypes.foreign)` rather than what they suggest
+- they really don't want to talk about static linking do they
+- `ctypes` views are kind of like lenses
+- awkward way to define struct types, yeah?
