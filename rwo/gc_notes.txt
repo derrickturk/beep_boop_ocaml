@@ -1,0 +1,2 @@
+- OCAMLRUNPARAM is worth fiddling with, but does this apply to both the bytecode interpreter and to the native runtime?
+- this is so much complexity every time memory gets touched

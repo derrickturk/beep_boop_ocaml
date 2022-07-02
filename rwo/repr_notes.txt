@@ -1,0 +1,5 @@
+- weird, polymorphic variants are represented as the hash of their names (+ maybe the payload)
+- this implies the possibility of hash collisions
+- the party line is "very unlikely, deal with it [frog_sunglasses]"
+- the string representation is nice (but what about the encoding - is that defined?)
+- custom blocks, cool
