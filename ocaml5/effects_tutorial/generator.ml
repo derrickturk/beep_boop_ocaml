@@ -1,5 +1,6 @@
 (* generator.ml, from https://github.com/ocamllabs/ocaml-effects-tutorial,
  * ported to Ocaml 5.0 alpha
+ * also the tree fringe thing
  *)
 
 open Effect
@@ -153,3 +154,34 @@ assert (23 = gen_primes ());;
 assert (29 = gen_primes ());;
 assert (31 = gen_primes ());;
 
+type 'a tree =
+| Leaf of 'a
+| Node of 'a tree * 'a tree
+
+let rec iter_tree f = function
+  | Leaf v -> f v
+  | Node (l, r) -> iter_tree f l; iter_tree f r
+let gen_tree = generate iter_tree
+
+let rec gen_equal g1 g2 =
+  match g1 (), g2 () with
+    | None, None -> true
+    | Some v1, Some v2 -> v1 = v2 && gen_equal g1 g2
+    | _ -> false
+
+let same_fringe t1 t2 = gen_equal (gen_tree t1) (gen_tree t2)
+
+let t1 = Node (Leaf 1, Node (Leaf 2, Leaf 3))
+let t2 = Node (Node (Leaf 1, Leaf 2), Leaf 3)
+let t3 = Node (Node (Leaf 3, Leaf 2), Leaf 1)
+let t4 = Leaf 42
+let t5 = Leaf 41
+let t6 = Node (Leaf 1, Leaf 2)
+let t7 = Node (Leaf 1, Node (Leaf 2, Leaf 3))
+;;
+
+assert (same_fringe t1 t2);;
+assert (same_fringe t2 t1);;
+assert (not (same_fringe t1 t3));;
+assert (same_fringe t1 t7);;
+assert (same_fringe t2 t7);;
