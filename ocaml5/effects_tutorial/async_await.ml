@@ -1,6 +1,5 @@
 (* async_await.ml, from https://github.com/ocamllabs/ocaml-effects-tutorial,
  * ported to Ocaml 5.0 alpha
- * also the tree fringe thing
  *)
 
 open Effect.Deep
