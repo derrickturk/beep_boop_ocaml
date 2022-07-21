@@ -3,12 +3,12 @@
  *)
 
 (* Notes for Slack:
- *   - I had to re-read that bit about the binding of if-then-else without the
- *       else a couple of times; the upshot - I think! - is that when the
- *       `then` expression is of type `()`, then it needs to be parenthesized
- *       if it's a compound (`;`-separated) expression; otherwise, the first
- *       semicolon will be parsed as terminating the whole if-then-else
- *       expression (after an implicit `else ()`). I need to fact-check this.
+ *  - I had to re-read that bit about the binding of if-then-else without the
+ *      else a couple of times; the upshot - I think! - is that when the
+ *      `then` expression is of type `()`, then it needs to be parenthesized
+ *      if it's a compound (`;`-separated) expression; otherwise, the first
+ *      semicolon will be parsed as terminating the whole if-then-else
+ *      expression (after an implicit `else ()`). I need to fact-check this.
  *  - while loops in a functional language make me Real Nervous; I think I'm
  *      correct in believing that the only way one can possibly end is through
  *      reference shenanigans. (well, mutable state or I/O, I suppose - like
