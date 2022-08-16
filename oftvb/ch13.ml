@@ -94,23 +94,19 @@ let dump_histogram hist =
     (fun x -> int_of_float @@ float_of_int x /. max *. 76.0) hist in
   let row i c =
     if c <> 0 then begin
-      Printf.printf "%03d|" i;
-      print_endline @@ String.make c '#'
+      Printf.printf "%03d|%s\n" i (String.make c '#')
     end
   in Array.iteri row counts
 
 let print_file_stats path =
   let dump_stats chan =
     let stats = channel_stats chan in
-      print_string "We had ";
-      print_int stats.lines;
-      print_string " lines, ";
-      print_int stats.chars;
-      print_string " characters, ";
-      print_int stats.words;
-      print_string " words, and ";
-      print_int stats.sentences;
-      print_endline " sentences in the file.";
+      Printf.printf
+        "We had %d lines, %d chars, %d words, and %d sentences in the file.\n"
+        stats.lines
+        stats.chars
+        stats.words
+        stats.sentences;
       dump_histogram stats.histogram
   in
   let chan = open_in path in
