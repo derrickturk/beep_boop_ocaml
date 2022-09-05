@@ -1,0 +1,4 @@
+(executable
+ (public_name minijson)
+ (name main)
+ (libraries minijson))

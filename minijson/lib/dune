@@ -1,0 +1,3 @@
+(library
+ (name minijson)
+ (preprocess (pps ppx_deriving.show)))
